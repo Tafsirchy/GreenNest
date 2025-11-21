@@ -15,7 +15,7 @@
 //   // console.log(indoorPlants);
 
 //   return (
-//     <div className="py-10 bg-[#B0CE8870]">
+//     <div className="py-10 bg-[#B0CE8880]">
 //       <h1 className=" text-5xl font-bold text-center pb-10">
 //         Top Rated Indoor Plants
 //       </h1>

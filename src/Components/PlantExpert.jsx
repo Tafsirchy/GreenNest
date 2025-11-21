@@ -11,22 +11,21 @@
 //   });
 
 //   return (
-//     <div className="py-10">
-//       <h1 className=" text-5xl font-bold text-center pb-10">
+//     <div className="py-10 bg-[#4C763B]">
+//       <h1 className="text-white text-5xl font-bold text-center pb-10">
 //         Meet Our Green Experts
 //       </h1>
 //       <div className="w-11/12 mx-auto grid grid-cols-4 gap-5 ">
 //         {experts.map((expert) => (
-//           <div className="card bg-base-200 shadow-sm ">
+//           <div className="card bg-base-200 shadow-lg ">
 //             <figure>
-//               <img
-//                 src={expert.img}
-//                 className="h-60 w-full object-cover"
-//               />
+//               <img src={expert.img} className="h-60 w-full object-cover" />
 //             </figure>
 
 //             <div className="card-body">
-//               <h2 className="card-title mb-2 text-xl font-bold">{expert.name}</h2>
+//               <h2 className="text-emerald-900 card-title mb-2 text-xl font-bold">
+//                 {expert.name}
+//               </h2>
 
 //               <p className="text-gray-600">{expert.specialization}</p>
 //             </div>
