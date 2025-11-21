@@ -1,0 +1,74 @@
+[
+  {
+    "plantId": 1,
+    "plantName": "Snake Plant",
+    "category": "Air Purifier",
+    "price": 18, 
+    "rating": 4.8,
+    "availableStock": 10,
+    "careLevel": "Easy",
+    "description": "A hardy plant that purifies indoor air and thrives in low light.",
+    "image": "https://i.ibb.co.com/1tncpQLz/Snake.jpg",
+    "providerName": "UrbanGreen Studio" 
+  },
+  {
+    "plantId": 2,
+    "plantName": "Peace Lily",
+    "category": "Flowering",
+    "price": 22,
+    "rating": 4.6,
+    "availableStock": 15,
+    "careLevel": "Medium",
+    "description": "A beautiful flowering indoor plant known for its air-purifying properties.",
+    "image": "https://i.ibb.co.com/TD91Sr3m/Peace-Lily.jpg",
+    "providerName": "GreenNest Suppliers"
+  },
+  {
+    "plantId": 3,
+    "plantName": "ZZ Plant",
+    "category": "Low Maintenance",
+    "price": 25,
+    "rating": 4.9,
+    "availableStock": 8,
+    "careLevel": "Easy",
+    "description": "A nearly indestructible indoor plant that thrives with minimal care.",
+    "image": "https://i.ibb.co.com/GQ9bbHZp/ZZ.jpg",
+    "providerName": "UrbanLeaf Growers"
+  },
+  {
+    "plantId": 4,
+    "plantName": "Aloe Vera",
+    "category": "Medicinal",
+    "price": 16,
+    "rating": 4.7,
+    "availableStock": 12,
+    "careLevel": "Easy",
+    "description": "A soothing succulent known for its medicinal gel and minimal watering needs.",
+    "image": "https://i.ibb.co.com/fzpDvPwB/Alovera.jpg",
+    "providerName": "EcoRoot Nursery"
+  },
+  {
+    "plantId": 5,
+    "plantName": "Rubber Plant",
+    "category": "Decorative",
+    "price": 30,
+    "rating": 4.5,
+    "availableStock": 9,
+    "careLevel": "Medium",
+    "description": "A stylish indoor plant with thick glossy leaves, perfect for home décor.",
+    "image": "https://i.ibb.co.com/Mk596zPT/Rubber.jpg",
+    "providerName": "LeafyWorld Farms"
+  },
+  {
+    "plantId": 6,
+    "plantName": "Pothos",
+    "category": "Hanging Plant",
+    "price": 14,
+    "rating": 4.8,
+    "availableStock": 20,
+    "careLevel": "Easy",
+    "description": "A fast-growing vine plant that thrives even in low-light environments.",
+    "image": "https://i.ibb.co.com/q3rkdPnC/Pothos.jpg",
+    "providerName": "NatureHome Gardeners"
+  }
+]
