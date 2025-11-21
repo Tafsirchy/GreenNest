@@ -19,7 +19,7 @@ const IndoorPlants = () => {
       <h1 className=" text-5xl font-bold text-center pb-10">
         Top Rated Indoor Plants
       </h1>
-      <div className="w-11/12 mx-auto grid grid-cols-3 gap-5 ">
+      <div className="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 ">
         {indoorPlants.map((plant) => (
           <div className="card bg-base-200 shadow-sm ">
             <figure>
@@ -36,11 +36,11 @@ const IndoorPlants = () => {
               </h2>
 
               <div className="card-actions justify-between items-center space-y-3 ">
-                <div className="bg-[#e5f7be] font-bold text-xl p-1 lg:py-2 lg:px-3 text-[#244f03] rounded-lg flex items-center gap-1 ">
+                <div className="bg-[#e5f7be] font-bold text-xl p-2 lg:py-2 lg:px-3 text-[#244f03] rounded-lg flex items-center gap-1 ">
                   <img className="w-5 h-5" src={dollar} alt="" />
                   {plant.price}
                 </div>
-                <div className="bg-[#fff0e1] p-1 lg:py-2 lg:px-3 text-[#ff8811] rounded-lg flex items-center gap-1  font-bold text-xl">
+                <div className="bg-[#fff0e1] p-2 lg:py-2 lg:px-3 text-[#ff8811] rounded-lg flex items-center gap-1  font-bold text-xl">
                   <img className="w-5 h-5" src={ratings} alt="" />
                   {plant.rating}
                 </div>
