@@ -1,3 +1,4 @@
+// import { Sprout } from "lucide-react";
 // import React, { useEffect, useState } from "react";
 
 // const PlantExpert = () => {
@@ -27,7 +28,9 @@
 //                 {expert.name}
 //               </h2>
 
-//               <p className="text-gray-600">{expert.specialization}</p>
+//               <p className="text-gray-600">
+//                 {expert.specialization}
+//               </p>
 //             </div>
 //           </div>
 //         ))}

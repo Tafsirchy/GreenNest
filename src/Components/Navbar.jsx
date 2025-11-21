@@ -8,7 +8,7 @@ const Navbar = () => {
 
   return (
     <nav className="bg-[#F0E49180]">
-      <div className="navbar w-11/12 mx-auto">
+      <div className="navbar w-11/12 mx-auto px-0">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -82,8 +82,8 @@ const Navbar = () => {
           </ul>
         </div>
 
-        <div className="navbar-end">
-          <Link to="/login" className="btn">
+        <div className="navbar-end ">
+          <Link to="/login" className="font-bold btn btn-secondary px-8 ">
             Login
           </Link>
         </div>
