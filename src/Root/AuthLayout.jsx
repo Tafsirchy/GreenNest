@@ -6,15 +6,15 @@ import Footer from '../Components/Footer';
 const AuthLayout = () => {
     return (
         <div>
-            <div>
-                <Navbar></Navbar>
-            </div>
-            <div>
+            <header>
+                {/* <Navbar></Navbar> */}
+            </header>
+            <main>
                 <Outlet></Outlet>
-            </div>
-            <div>
-                <Footer></Footer>
-            </div>
+            </main>
+            <footer>
+                {/* <Footer></Footer> */}
+            </footer>
         </div>
     );
 };
