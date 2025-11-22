@@ -1,8 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 import logo from "../assets/nest-home.png";
 import { Link, NavLink } from "react-router";
+import { UserIcon } from "lucide-react";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {
+        alert("User Logged Out");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   const NavActiveStyle = ({ isActive }) =>
     isActive ? "bg-cyan-800 text-white" : "";
 
@@ -10,6 +24,7 @@ const Navbar = () => {
     <nav className="bg-[#F0E49180]">
       <div className="navbar w-11/12 mx-auto px-0">
         <div className="navbar-start">
+          {/* Mobile Dropdown */}
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
               <svg
@@ -28,10 +43,9 @@ const Navbar = () => {
               </svg>
             </div>
 
-            {/* Mobile Menu */}
             <ul
-              tabIndex="-1"
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+              tabIndex={0}
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-10 mt-3 w-52 p-2 shadow"
             >
               <li>
                 <NavLink className={NavActiveStyle} to="/">
@@ -82,10 +96,24 @@ const Navbar = () => {
           </ul>
         </div>
 
-        <div className="navbar-end ">
-          <Link to="/auth/login" className="font-bold btn btn-secondary px-8 ">
-            Login
-          </Link>
+        {/* Right Section */}
+        <div className="navbar-end gap-2">
+          <div className="p-2 rounded-full border">
+            <UserIcon />
+          </div>
+
+          {user ? (
+            <button
+              onClick={handleLogOut}
+              className="font-bold btn btn-secondary px-8"
+            >
+              LogOut
+            </button>
+          ) : (
+            <Link to="/auth/login" className="font-bold btn btn-secondary px-8">
+              Login
+            </Link>
+          )}
         </div>
       </div>
     </nav>

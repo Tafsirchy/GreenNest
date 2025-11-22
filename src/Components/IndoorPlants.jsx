@@ -21,7 +21,7 @@ const IndoorPlants = () => {
       </h1>
       <div className="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 ">
         {indoorPlants.map((plant) => (
-          <div className="card bg-base-200 shadow-sm ">
+          <div className="card bg-base-200 shadow-sm hover:shadow-xl hover:scale-105 transition duration-300 ease-in-out">
             <figure>
               <img
                 src={plant.image}
@@ -45,8 +45,8 @@ const IndoorPlants = () => {
                   {plant.rating}
                 </div>
               </div>
-              <div className="btn btn-warning text-white">
-                <Link>View Details</Link>
+              <div className="btn btn-warning text-white hover:bg-info">
+                <Link to={`/plantDetails/${plant.id}`}>View Details</Link>
               </div>
             </div>
           </div>
