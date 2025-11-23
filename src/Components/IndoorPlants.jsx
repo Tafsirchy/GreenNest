@@ -12,41 +12,54 @@ const IndoorPlants = () => {
       .then((data) => setIndoorPlants(data))
       .catch((error) => console.log(error));
   }, []);
-  // console.log(indoorPlants);
 
   return (
-    <div className="py-10 bg-[#B0CE8880]">
-      <h1 className=" text-5xl font-bold text-center pb-10">
+    <div className="py-10 bg-[#F5F0E1] min-h-screen">
+      <h1 className="text-5xl font-semibold text-center text-[#2F4F2F] pb-10">
         Top Rated Indoor Plants
       </h1>
-      <div className="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 ">
+
+      <div className="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {indoorPlants.map((plant) => (
-          <div className="card bg-base-200 shadow-sm hover:shadow-xl hover:scale-105 transition duration-300 ease-in-out">
+          <div
+            key={plant.plantId}
+            className="card bg-[#FAF5EF] shadow-md hover:bg-white hover:shadow-lg hover:scale-105 transition-all duration-300 ease-in-out rounded-2xl"
+          >
             <figure>
               <img
                 src={plant.image}
-                className="h-60 w-full object-cover px-5 pt-5 rounded-2xl"
+                className="h-60 w-full object-cover rounded-t-2xl"
+                alt=""
               />
             </figure>
 
-            <div className="card-body">
-              <h2 className="card-title mb-2">
+            <div className="card-body text-[#2F4F2F]">
+              <h2 className="card-title mb-2 text-2xl">
                 {plant.plantName}
-                <div className="badge badge-secondary">NEW</div>
+                <div className="badge badge-secondary bg-[#A3B18A] text-[#F5F0E1]">
+                  NEW
+                </div>
               </h2>
 
-              <div className="card-actions justify-between items-center space-y-3 ">
-                <div className="bg-[#e5f7be] font-bold text-xl p-2 lg:py-2 lg:px-3 text-[#244f03] rounded-lg flex items-center gap-1 ">
+              <div className="card-actions justify-between items-center space-y-2">
+                <div className="bg-[#E6E2D3] font-bold text-lg px-3 py-2 rounded-lg flex items-center gap-1 text-[#2F4F2F]">
                   <img className="w-5 h-5" src={dollar} alt="" />
                   {plant.price}
                 </div>
-                <div className="bg-[#fff0e1] p-2 lg:py-2 lg:px-3 text-[#ff8811] rounded-lg flex items-center gap-1  font-bold text-xl">
+
+                <div className="bg-[#E6E2D3]/80 px-3 py-2 text-[#2F4F2F] rounded-lg flex items-center gap-1 font-bold text-lg">
                   <img className="w-5 h-5" src={ratings} alt="" />
                   {plant.rating}
                 </div>
               </div>
-              <div className="btn btn-warning text-white hover:bg-info">
-                <Link to={`/plantDetails/${plant.id}`}>View Details</Link>
+
+              <div className="mt-4">
+                <Link
+                  to={`/plantDetails/${plant.plantId}`}
+                  className="btn w-full bg-[#A3B18A] text-[#F5F0E1] hover:bg-[#7f9167] transition-colors"
+                >
+                  View Details
+                </Link>
               </div>
             </div>
           </div>

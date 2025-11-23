@@ -26,11 +26,11 @@ const Register = () => {
   };
   return (
     <div>
-      <div className="hero bg-base-200 min-h-screen bg-gradient-to-br from-[#6af63370] via-[#0cf53610] to-[#3beb9e90]">
+      <div className="hero bg-base-200 min-h-screen bg-gradient-to-br from-[#f3faef] to-[#d3e6dd]">
         {/* <div className="hero-content flex-col lg:flex-row-reverse">
         </div> */}
 
-        <div className="card bg-base-100 w-full max-w-sm shrink-0 border border-white/20 shadow-2xl shadow-[#00000080] backdrop-blur-lg bg-white/30">
+        <div className="card max-w-sm shrink-0 border  w-full backdrop-blur-lg bg-white/10  border-white/20 shadow-2xl rounded-2xl">
           <div className="card-body ">
             <div>
               <h1 className="text-2xl font-bold text-center py-4 border-b-1 border-base-300">
@@ -39,7 +39,7 @@ const Register = () => {
             </div>
             <form onSubmit={handleRegister}>
               <fieldset className="fieldset mt-3">
-                <label className="label">Name</label>
+                <label className="label text-black font-semibold">Name</label>
                 <input
                   name="name"
                   type="text"
@@ -48,7 +48,7 @@ const Register = () => {
                   required
                 />
                 {/* email */}
-                <label className="label">Email</label>
+                <label className="label text-black font-semibold">Email</label>
                 <input
                   name="email"
                   type="email"
@@ -57,7 +57,9 @@ const Register = () => {
                   required
                 />
                 {/* photo url */}
-                <label className="label">Photo URL</label>
+                <label className="label text-black font-semibold">
+                  Photo URL
+                </label>
                 <input
                   name="photo"
                   type="text"
@@ -66,7 +68,9 @@ const Register = () => {
                   required
                 />
                 {/* password */}
-                <label className="label">Password</label>
+                <label className="label text-black font-semibold">
+                  Password
+                </label>
                 <input
                   name="password"
                   type="password"
@@ -74,13 +78,19 @@ const Register = () => {
                   placeholder="Password"
                   required
                 />
-                <button type="submit" className="btn btn-neutral mt-4">
+                <button
+                  type="submit"
+                  className="btn mt-4 bg-[#043915] hover:bg-[#046b21] text-white"
+                >
                   Register
                 </button>
-                <div className="text-center font-bold pt-2">
-                  <p className="text-gray-500">
+                <div className="text-center text-sm  pt-2">
+                  <p className="text-black">
                     Already Have an Account?{" "}
-                    <Link to="/auth/login" className="text-red-600">
+                    <Link
+                      to="/auth/login"
+                      className="text-[#043915] font-bold hover:underline"
+                    >
                       Login
                     </Link>
                   </p>

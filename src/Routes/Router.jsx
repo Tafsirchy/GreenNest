@@ -3,48 +3,52 @@ import RootLayout from "../Root/RootLayout";
 import Home from "../Pages/Home";
 import AuthLayout from "../Root/AuthLayout";
 import Login from "../Pages/Login";
-import SignUp from "../Pages/Register";
 import Register from "../Pages/Register";
 import PlantDetails from "../Pages/PlantDetails";
 import Plants from "../Pages/Plants";
 import MyProfile from "../Pages/MyProfile";
+import ConsultationForm from "../Pages/ConsultationForm";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <RootLayout></RootLayout>,
+    element: <RootLayout />,
     children: [
       {
         path: "/",
-        element: <Home></Home>,
+        element: <Home />,
       },
     ],
   },
   {
     path: "/auth",
-    element: <AuthLayout></AuthLayout>,
+    element: <AuthLayout />,
     children: [
       {
         path: "/auth/login",
-        element: <Login></Login>,
+        element: <Login />,
       },
       {
         path: "/auth/register",
-        element: <Register></Register>,
+        element: <Register />,
       },
     ],
   },
   {
     path: "/plants",
-    element: <Plants></Plants>,
+    element: <Plants />,
   },
   {
     path: "/profile",
-    element: <MyProfile></MyProfile>,
+    element: <MyProfile />,
   },
   {
     path: "/plantDetails/:id",
-    element: <PlantDetails></PlantDetails>,
+    element: <PlantDetails />,
+  },
+  {
+    path: "/consultation",
+    element: <ConsultationForm />,
   },
 ]);
 
