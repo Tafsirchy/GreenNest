@@ -85,7 +85,7 @@ const MyProfile = () => {
                     </h2>
 
                     <div className="flex flex-col">
-                      <label className="font-semibold text-gray-700">
+                      <label className="font-semibold text-gray-700 text-lg mb-1">
                         Name
                       </label>
                       <input
@@ -99,7 +99,7 @@ const MyProfile = () => {
                     </div>
 
                     <div className="flex flex-col">
-                      <label className="font-semibold text-gray-700">
+                      <label className="font-semibold text-gray-700 text-lg mb-1">
                         Photo URL
                       </label>
                       <input

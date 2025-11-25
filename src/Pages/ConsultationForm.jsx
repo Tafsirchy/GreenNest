@@ -28,7 +28,9 @@ const ConsultationForm = () => {
 
             <form onSubmit={handleConsultation}>
               <fieldset className="fieldset mt-3">
-                <label className="label text-black font-semibold">Name</label>
+                <label className="label text-black font-semibold text-lg">
+                  Name
+                </label>
                 <input
                   type="text"
                   name="name"
@@ -37,7 +39,9 @@ const ConsultationForm = () => {
                   required
                 />
 
-                <label className="label text-black font-semibold">Email</label>
+                <label className="label text-black font-semibold text-lg">
+                  Email
+                </label>
                 <input
                   type="email"
                   name="email"
