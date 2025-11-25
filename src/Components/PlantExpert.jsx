@@ -19,8 +19,8 @@ const PlantExpert = () => {
       });
   }, []);
 
-  if(loading) {
-    return ( 
+  if (loading) {
+    return (
       <div className="min-h-screen flex justify-center items-center">
         <Loading></Loading>
       </div>

@@ -3,18 +3,21 @@ import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
 import { Eye, EyeOff } from "lucide-react";
 import { toast } from "react-toastify";
+import Loading from "../Components/Loading";
 
 const Login = () => {
   const { signIn, handleGoogleSignIn, setUser } = useContext(AuthContext);
   const [error, setError] = useState("");
   const [email, setEmail] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const location = useLocation();
   const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
+    setLoading(true);
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
@@ -33,22 +36,34 @@ const Login = () => {
         } else if (error.code === "auth/user-not-found") {
           setError("No account found with this email.");
         } else if (error.code === "auth/invalid-email") {
-          setError  ("Invalid email format.");
+          setError("Invalid email format.");
         } else {
           setError("Something went wrong. Please try again.");
         }
-      });
+      })
+      .finally(() => setLoading(false));
   };
 
   const googleSignIn = () => {
+    setLoading(true);
+
     handleGoogleSignIn()
       .then((result) => {
         const user = result.user;
         setUser(user);
         navigate(location.state ? location.state : "/");
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.log(error))
+      .finally(() => setLoading(false));
   };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex justify-center items-center">
+        <Loading></Loading>;
+      </div>
+    );
+  }
 
   const handleForgetPass = () => {
     navigate(`/forgetPass/${email}`);
@@ -58,13 +73,15 @@ const Login = () => {
     <div className="hero bg-base-200 min-h-screen bg-gradient-to-br from-[#FAF5EF] to-[#E6E2D3] flex items-center justify-center">
       <div className="card max-w-sm shrink-0 border w-full backdrop-blur-lg bg-white/10 border-white/20 shadow-2xl rounded-2xl">
         <div className="card-body">
-          <h1 className="text-2xl font-bold text-center py-4 text-black border-b border-white/30">
+          <h1 className="text-2xl font-bold text-center text-black border-b border-white/30">
             Login Your Account
           </h1>
 
           <form onSubmit={handleLogin} className="flex flex-col mt-3">
             <div className="flex flex-col py-2">
-              <label className="label text-black font-semibold">Email</label>
+              <label className="label text-black font-semibold text-lg mb-1">
+                Email
+              </label>
               <input
                 onChange={(e) => {
                   setEmail(e.target.value);
@@ -78,9 +95,10 @@ const Login = () => {
               />
             </div>
 
-            {/* Password */}
             <div className="flex flex-col py-2 relative">
-              <label className="label text-black font-semibold">Password</label>
+              <label className="label text-black font-semibold text-lg mb-1">
+                Password
+              </label>
               <input
                 name="password"
                 type={showPassword ? "text" : "password"}

@@ -11,7 +11,6 @@ const ForgetPass = () => {
   const [formEmail, setFormEmail] = useState("");
 
   useEffect(() => {
-
     if (email) {
       setFormEmail(email);
     }
@@ -22,7 +21,6 @@ const ForgetPass = () => {
 
     sendPasswordResetEmail(auth, formEmail)
       .then(() => {
-        // alert("Reset email sent!");
         window.open("https://mail.google.com/mail/u/0/#inbox");
       })
       .catch(() => alert("Error sending email"));

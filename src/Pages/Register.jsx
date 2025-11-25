@@ -3,13 +3,16 @@ import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
 import { toast } from "react-toastify";
 import { Eye, EyeOff } from "lucide-react";
+import Loading from "../Components/Loading";
 
 const Register = () => {
   const { createUser, setUser, handleGoogleSignIn, updateUser } =
     useContext(AuthContext);
 
   const [error, setError] = useState("");
-  const [showPassword, setShowPassword] = useState(false); // ⭐ FIX ADDED
+  const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate();
 
   const handleRegister = (e) => {
@@ -36,6 +39,8 @@ const Register = () => {
       return;
     }
 
+    setLoading(true);
+
     createUser(email, password)
       .then((result) => {
         const user = result.user;
@@ -56,18 +61,29 @@ const Register = () => {
       })
       .catch(() => {
         toast.error("Email already exists");
-      });
+      })
+      .finally(() => setLoading(false));
   };
 
   const googleSignUp = () => {
+    setLoading(true);
     handleGoogleSignIn()
       .then((result) => {
         const user = result.user;
         setUser(user);
         navigate("/");
       })
-      .catch((error) => console.log(error)); // ⭐ FIXED
+      .catch((error) => console.log(error))
+      .finally(() => setLoading(false));
   };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex justify-center items-center">
+        <Loading></Loading>;
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -79,7 +95,6 @@ const Register = () => {
                 Sign Up
               </h1>
             </div>
-
             <form onSubmit={handleRegister}>
               <fieldset className="fieldset">
                 <label className="label text-black font-semibold text-sm">
@@ -92,7 +107,6 @@ const Register = () => {
                   placeholder="Name"
                   required
                 />
-
                 <label className="label text-black font-semibold mt-1 text-sm">
                   Email
                 </label>
@@ -103,7 +117,6 @@ const Register = () => {
                   placeholder="Email"
                   required
                 />
-
                 <label className="label text-black font-semibold mt-1 text-sm">
                   Photo URL
                 </label>
@@ -114,7 +127,6 @@ const Register = () => {
                   placeholder="Photo URL"
                   required
                 />
-
                 <div className="flex flex-col pt-2 relative pt-0">
                   <label className="label text-black font-semibold mb-1 text-sm">
                     Password
@@ -127,7 +139,6 @@ const Register = () => {
                     onChange={() => setError("")}
                     required
                   />
-
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
@@ -145,7 +156,6 @@ const Register = () => {
                 >
                   Sign Up
                 </button>
-
                 <button
                   onClick={googleSignUp}
                   className="my-1 btn bg-white text-black border-[#e5e5e5]"
@@ -179,7 +189,6 @@ const Register = () => {
                   </svg>
                   Continue with Google
                 </button>
-
                 <div className="text-center text-sm pt-2">
                   <p className="text-black">
                     Already Have an Account?{" "}

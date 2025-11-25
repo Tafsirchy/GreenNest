@@ -11,7 +11,6 @@ const MyProfile = () => {
 
   const [loading, setLoading] = useState(false);
 
-
   const handleOpenForm = () => {
     setIsOpen(!isOpen);
   };
@@ -21,7 +20,7 @@ const MyProfile = () => {
     setLoading(true);
     const name = e.target.name.value;
     const photo = e.target.photo.value;
-    
+
     updateUser({
       displayName: name,
       photoURL: photo,
@@ -40,11 +39,10 @@ const MyProfile = () => {
 
       <main className="min-h-screen bg-gradient-to-b from-[#f3faef] to-[#dceade] py-16 ">
         <div className="max-w-2xl mx-auto">
-          {/* Profile Card */}
           <div
-            className={`card shadow-xl p-15 rounded-3xl border 
-  border-gray-200 transition-all duration-300
-  ${isOpen ? "bg-white" : "bg-transparent"}`}
+            className={`card shadow-xl p-15 rounded-3xl border border-gray-200 transition-all duration-300 ${
+              isOpen ? "bg-white" : "bg-transparent"
+            }`}
           >
             {/* Avatar */}
             <div className="flex justify-center">
@@ -55,7 +53,6 @@ const MyProfile = () => {
               </div>
             </div>
 
-            {/* Name & Email */}
             <div className="text-center mt-5">
               <h1 className="text-4xl font-bold text-[#043915] flex justify-center gap-2 items-center">
                 <UserRound size={30} /> {user?.displayName}
@@ -64,7 +61,6 @@ const MyProfile = () => {
                 <Mail size={18} /> {user?.email}
               </p>
 
-              {/* Update Button */}
               <button
                 onClick={handleOpenForm}
                 className="btn bg-[#043915] hover:bg-[#046b21] text-white font-semibold px-6 mt-6 flex items-center gap-2 mx-auto"
@@ -73,7 +69,6 @@ const MyProfile = () => {
               </button>
             </div>
 
-            {/* Update Form */}
             {isOpen && (
               <>
                 {loading ? (
@@ -89,7 +84,6 @@ const MyProfile = () => {
                       Edit Information
                     </h2>
 
-                    {/* Name */}
                     <div className="flex flex-col">
                       <label className="font-semibold text-gray-700">
                         Name
@@ -104,7 +98,6 @@ const MyProfile = () => {
                       />
                     </div>
 
-                    {/* Photo URL */}
                     <div className="flex flex-col">
                       <label className="font-semibold text-gray-700">
                         Photo URL
@@ -119,7 +112,6 @@ const MyProfile = () => {
                       />
                     </div>
 
-                    {/* Submit Button */}
                     <button
                       type="submit"
                       className="btn bg-[#043915] hover:bg-[#046b21] text-white font-semibold w-full rounded-lg"
@@ -133,7 +125,6 @@ const MyProfile = () => {
           </div>
         </div>
       </main>
-
       <footer>
         <Footer />
       </footer>

@@ -8,7 +8,6 @@ const IndoorPlants = () => {
   const [indoorPlants, setIndoorPlants] = useState([]);
   const [loading, setLoading] = useState(true);
 
-
   useEffect(() => {
     fetch("plants.json")
       .then((res) => res.json())
@@ -22,7 +21,7 @@ const IndoorPlants = () => {
       });
   }, []);
 
-  if(loading) {
+  if (loading) {
     return (
       <div className="min-h-screen flex justify-center items-center">
         <Loading></Loading>
@@ -73,7 +72,7 @@ const IndoorPlants = () => {
               <div className="mt-4">
                 <Link
                   to={`/plantDetails/${plant.plantId}`}
-                 className="btn w-full bg-[#A3B18A] text-[#F5F0E1] hover:bg-[#7f9167] transition-colors"
+                  className="btn w-full bg-[#A3B18A] text-[#F5F0E1] hover:bg-[#7f9167] transition-colors"
                 >
                   View Details
                 </Link>

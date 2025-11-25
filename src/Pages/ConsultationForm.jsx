@@ -10,7 +10,6 @@ const ConsultationForm = () => {
     const name = form.name.value;
     const email = form.email.value;
 
-    // You can store or send to server here
     console.log("Consultation Request:", name, email);
 
     toast.success("Your consultation has been booked successfully!");
@@ -29,7 +28,6 @@ const ConsultationForm = () => {
 
             <form onSubmit={handleConsultation}>
               <fieldset className="fieldset mt-3">
-                {/* Name */}
                 <label className="label text-black font-semibold">Name</label>
                 <input
                   type="text"
@@ -39,7 +37,6 @@ const ConsultationForm = () => {
                   required
                 />
 
-                {/* Email */}
                 <label className="label text-black font-semibold">Email</label>
                 <input
                   type="email"
@@ -49,7 +46,6 @@ const ConsultationForm = () => {
                   required
                 />
 
-                {/* Submit */}
                 <button
                   type="submit"
                   className="btn mt-4 bg-[#043915] hover:bg-[#046b21] text-white w-full"

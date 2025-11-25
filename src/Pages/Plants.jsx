@@ -72,7 +72,6 @@ const Plants = () => {
           </div>
         </div>
       </main>
-
       <footer>
         <Footer />
       </footer>

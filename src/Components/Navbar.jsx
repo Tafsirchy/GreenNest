@@ -21,7 +21,6 @@ const Navbar = () => {
     <nav className="bg-[#043915] shadow-md font-sans">
       <div className="navbar w-11/12 mx-auto px-0">
         <div className="navbar-start text-white">
-          {/* Mobile Dropdown */}
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
               <svg
@@ -61,8 +60,6 @@ const Navbar = () => {
               </li>
             </ul>
           </div>
-
-          {/* Logo */}
           <Link
             to="/"
             className="flex justify-center items-center gap-1 btn-ghost text-2xl text-white"
@@ -73,8 +70,6 @@ const Navbar = () => {
             </span>
           </Link>
         </div>
-
-        {/* Desktop Menu */}
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 text-white">
             <li>
@@ -94,9 +89,6 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-
-        {/* Right Section */}
-        {/* Right Section */}
         <div className="navbar-end gap-2">
           {user ? (
             <div className="dropdown dropdown-end">
@@ -111,8 +103,6 @@ const Navbar = () => {
                   alt="User"
                 />
               </div>
-
-              {/* Dropdown Menu */}
               <ul
                 tabIndex={0}
                 className="dropdown-content menu p-2 shadow bg-white rounded-box w-52 text-[#043915] text-center items-center"

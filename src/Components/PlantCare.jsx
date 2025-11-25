@@ -8,7 +8,6 @@ const PlantCare = () => {
         Plant Care Tips
       </h1>
       <div className="w-11/12 mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-center ">
-        {/* Watering */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -27,7 +26,6 @@ const PlantCare = () => {
           </p>
         </motion.div>
 
-        {/* Sunlight */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -45,7 +43,6 @@ const PlantCare = () => {
           </p>
         </motion.div>
 
-        {/* Fertilizing */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}

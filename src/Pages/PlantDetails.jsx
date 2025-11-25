@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
-import { Leaf, LeafIcon } from "lucide-react";
 import { FaLeaf } from "react-icons/fa";
 import price from "../assets/dollar.png";
 import available from "../assets/tree.png";
@@ -31,7 +30,6 @@ const PlantDetails = () => {
         <div className="w-11/12 mx-auto  py-10">
           {plant ? (
             <div className="py-10">
-              {/* Title Section */}
               <div className="text-center mb-10">
                 <h1 className="flex items-center justify-center gap-3 text-4xl font-semibold text-[#2F4F2F]">
                   <FaLeaf className="w-12 h-12 text-[#8FA373] animate-bounce [animation-duration:2s] " />
@@ -40,7 +38,6 @@ const PlantDetails = () => {
               </div>
 
               <div className="w-11/12 mx-auto flex flex-col lg:flex-row items-center justify-between gap-10">
-                {/* Image Section */}
                 <div className="w-full lg:w-1/2 flex justify-center">
                   <img
                     className="w-auto h-[300px] lg:w-[500px] lg:h-[500px] rounded-2xl shadow-md transform transition-transform duration-700 hover:scale-105 hover:translate-x-2 object-cover"
@@ -49,10 +46,9 @@ const PlantDetails = () => {
                   />
                 </div>
 
-                {/* Text Section */}
                 <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left text-[#2F4F2F]">
                   <p className="text-[#5B5B3A] text-2xl mb-5 font-semibold">
-                   {plant.description}
+                    {plant.description}
                   </p>
                   <div className=" flex justify-between items-center gap-10 pb-10 font-semibold">
                     <div className="flex justify-center items-center gap-3">
@@ -71,7 +67,10 @@ const PlantDetails = () => {
                       </p>
                     </div>
                   </div>
-                  <Link to="/consultation" className="bg-[#043915] px-12 py-3 text-white rounded-lg font-semibold hover:bg-[#8FA373] transition-all hover:duration-500">
+                  <Link
+                    to="/consultation"
+                    className="bg-[#043915] px-12 py-3 text-white rounded-lg font-semibold hover:bg-[#8FA373] transition-all hover:duration-500"
+                  >
                     Book Consultation
                   </Link>
                 </div>

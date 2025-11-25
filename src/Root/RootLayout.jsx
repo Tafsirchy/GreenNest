@@ -5,7 +5,6 @@ import Footer from "../Components/Footer";
 import Loading from "../Components/Loading";
 
 const RootLayout = () => {
-
   const navigation = useNavigation();
 
   const isLoading = navigation.state === "loading";
