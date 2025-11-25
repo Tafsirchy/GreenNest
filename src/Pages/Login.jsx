@@ -1,23 +1,33 @@
-import React, { useContext } from "react";
-import { Link } from "react-router";
+import React, { useContext, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
 
 const Login = () => {
   const { signIn, handleGoogleSignIn, setUser } = useContext(AuthContext);
+  const [error, setError] = useState("");
+  const [email, setEmail] = useState("");
 
+  const location = useLocation();
+  const navigate = useNavigate();
+  // console.log(location);
   const handleLogin = (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
 
-    signIn(email, password)
-      .then((result) => {
-        const user = result.user;
-        console.log(user);
-        form.reset();
-      })
-      .catch((error) => alert(error.message));
+
+      signIn(email, password)
+        .then((result) => {
+          const user = result.user;
+          console.log(user);
+          form.reset();
+          navigate(`${location.state ? location.state : "/"}`);
+        })
+        .catch((error) => {
+          // alert(error.message);
+          setError(error.code);
+        });
   };
 
   const googleSignIn = () => {
@@ -25,10 +35,15 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         setUser(user);
-        
+        navigate(`${location.state ? location.state : "/"}`);
       })
       .then((error) => console.log(error));
-  }
+  };
+
+  const handleForgetPass = () => {
+    
+    navigate(`/forgetPass/${email}`);
+  };
 
   return (
     <div className="hero bg-base-200 min-h-screen bg-gradient-to-br from-[#FAF5EF] to-[#E6E2D3] flex items-center justify-center">
@@ -45,6 +60,7 @@ const Login = () => {
             <div className="flex flex-col py-2">
               <label className="label text-black font-semibold">Email</label>
               <input
+                onChange={(e) => setEmail(e.target.value)}
                 name="email"
                 type="email"
                 className="input input-bordered w-full"
@@ -67,11 +83,14 @@ const Login = () => {
 
             {/* Forgot Password */}
             <div className="text-left">
-              <a className="link link-hover text-red-500 text-sm mt-0 pt-0">
+              <button
+                onClick={handleForgetPass}
+                className="link link-hover text-red-500 text-sm mt-0 pt-0"
+              >
                 Forgot password?
-              </a>
+              </button>
             </div>
-
+            {error && <p className="text-red-500 text-sm mt-2 pt-2">{error}</p>}
             {/* Login Button */}
             <button
               type="submit"
@@ -79,6 +98,7 @@ const Login = () => {
             >
               Login
             </button>
+            {/* login with google */}
             <button
               onClick={googleSignIn}
               className="my-3 btn bg-white text-black border-[#e5e5e5]"

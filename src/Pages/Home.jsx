@@ -8,6 +8,7 @@ import PlantOfTheWeek from '../Components/PlantOfTheWeek';
 const Home = () => {
     return (
         <div>
+            
             <Slider></Slider>
             <IndoorPlants></IndoorPlants>
             <PlantCare></PlantCare>

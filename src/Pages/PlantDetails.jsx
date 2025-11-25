@@ -50,11 +50,8 @@ const PlantDetails = () => {
 
                 {/* Text Section */}
                 <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left text-[#2F4F2F]">
-                  <p className="text-[#5B5B3A] text-xl mb-5">
-                    Aloe vera is a resilient succulent with gel-filled leaves,
-                    widely valued for soothing burns, hydrating skin, and
-                    supporting healing. Minimal care needed, perfect for
-                    eco-friendly homes.
+                  <p className="text-[#5B5B3A] text-2xl mb-5 font-semibold">
+                   {plant.description}
                   </p>
                   <div className=" flex justify-between items-center gap-10 pb-10 font-semibold">
                     <div className="flex justify-center items-center gap-3">

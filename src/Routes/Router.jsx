@@ -8,47 +8,61 @@ import PlantDetails from "../Pages/PlantDetails";
 import Plants from "../Pages/Plants";
 import MyProfile from "../Pages/MyProfile";
 import ConsultationForm from "../Pages/ConsultationForm";
+import PrivateRoute from "../Provider/PrivateRoute";
+import ForgetPass from "../Pages/ForgetPass";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <RootLayout />,
+    element: <RootLayout></RootLayout>,
     children: [
       {
         path: "/",
-        element: <Home />,
+        element: <Home></Home>,
       },
     ],
   },
   {
     path: "/auth",
-    element: <AuthLayout />,
+    element: <AuthLayout></AuthLayout>,
     children: [
       {
         path: "/auth/login",
-        element: <Login />,
+        element: <Login></Login>,
       },
       {
         path: "/auth/register",
-        element: <Register />,
+        element: <Register></Register>,
       },
     ],
   },
   {
     path: "/plants",
-    element: <Plants />,
+    element: <Plants></Plants>,
   },
   {
     path: "/profile",
-    element: <MyProfile />,
+    element: (
+      <PrivateRoute>
+        <MyProfile></MyProfile>
+      </PrivateRoute>
+    ),
   },
   {
     path: "/plantDetails/:id",
-    element: <PlantDetails />,
+    element: (
+      <PrivateRoute>
+        <PlantDetails></PlantDetails>
+      </PrivateRoute>
+    ),
   },
   {
     path: "/consultation",
-    element: <ConsultationForm />,
+    element: <ConsultationForm></ConsultationForm>,
+  },
+  {
+    path: "/forgetPass/:email?",
+    element: <ForgetPass></ForgetPass>,
   },
 ]);
 

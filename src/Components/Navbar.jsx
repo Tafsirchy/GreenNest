@@ -41,7 +41,7 @@ const Navbar = () => {
 
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-[#FAF5EF] rounded-box z-10 mt-3 w-52 p-2 shadow text-white"
+              className="menu menu-sm dropdown-content  rounded-box z-10 mt-3 w-52 p-2 shadow bg-white text-[#043915] font-bold"
             >
               <li>
                 <NavLink className={NavActiveStyle} to="/">
@@ -67,7 +67,7 @@ const Navbar = () => {
             className="flex justify-center items-center gap-1 btn-ghost text-2xl text-white"
           >
             <img className="w-12 h-12 mr-0" src={logo} alt="GreenNest Logo" />
-            <span className="text-xl pl-1 text-[#2F4F2F] font-semibold text-white">
+            <span className="text-xl pl-1 font-semibold text-white">
               GreenNest
             </span>
           </Link>
@@ -95,17 +95,41 @@ const Navbar = () => {
         </div>
 
         {/* Right Section */}
+        {/* Right Section */}
         <div className="navbar-end gap-2">
-          <div className="p-2 rounded-full border border-[#D9E4D2]">
-            <UserIcon className="text-white" />
-          </div>
           {user ? (
-            <button
-              onClick={handleLogOut}
-              className="font-bold btn bg-[#A3B18A] text-[#F5F0E1] px-8 hover:bg-white hover:text-[#043915]"
-            >
-              LogOut
-            </button>
+            <div className="dropdown dropdown-end">
+              <div
+                tabIndex={0}
+                role="button"
+                className="p-1 rounded-full border border-[#D9E4D2] cursor-pointer"
+              >
+                <img
+                  className="w-9 h-9 rounded-full"
+                  src={user.photoURL}
+                  alt="User"
+                />
+              </div>
+
+              {/* Dropdown Menu */}
+              <ul
+                tabIndex={0}
+                className="dropdown-content menu p-2 shadow bg-white rounded-box w-52 text-[#043915] text-center items-center"
+              >
+                <li className="font-semibold pointer-events-none bg-gray-100 rounded-lg ">
+                  <span>{user.displayName}</span>
+                </li>
+
+                <li>
+                  <button
+                    onClick={handleLogOut}
+                    className="font-semibold text-red-600 hover:bg-red-100 rounded-lg"
+                  >
+                    Logout
+                  </button>
+                </li>
+              </ul>
+            </div>
           ) : (
             <Link
               to="/auth/login"
