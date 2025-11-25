@@ -64,7 +64,7 @@ const Login = () => {
   if (loading) {
     return (
       <div className="min-h-screen flex justify-center items-center">
-        <Loading></Loading>;
+        <Loading></Loading>
       </div>
     );
   }

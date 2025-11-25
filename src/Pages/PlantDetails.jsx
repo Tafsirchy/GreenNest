@@ -26,7 +26,7 @@ const PlantDetails = () => {
       <header>
         <Navbar />
       </header>
-      <main className="bg-[#F5F0E1] ">
+      <main className="bg-[#F5F0E130] ">
         <div className="w-11/12 mx-auto  py-10">
           {plant ? (
             <div className="py-10">
