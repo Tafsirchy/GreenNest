@@ -4,13 +4,24 @@ import { Outlet } from "react-router";
 import Footer from "../Components/Footer";
 
 const AuthLayout = () => {
+  const isLoading = navigation.state === "loading";
   return (
     <div>
-      <header><Navbar></Navbar></header>
+      <header>
+        <Navbar></Navbar>
+      </header>
       <main>
-        <Outlet></Outlet>
+        {isLoading ? (
+          <div className="min-h-screen flex justify-center items-center">
+            <Loading></Loading>
+          </div>
+        ) : (
+          <Outlet></Outlet>
+        )}
       </main>
-      <footer><Footer></Footer></footer>
+      <footer>
+        <Footer></Footer>
+      </footer>
     </div>
   );
 };

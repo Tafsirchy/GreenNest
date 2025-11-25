@@ -1,19 +1,35 @@
 import React, { useEffect, useState } from "react";
 import { Sprout } from "lucide-react";
+import Loading from "./Loading";
 
 const PlantExpert = () => {
   const [experts, setExperts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch("expert.json")
       .then((res) => res.json())
-      .then((data) => setExperts(data))
-      .catch((err) => console.log(err));
+      .then((data) => {
+        setExperts(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        setLoading(false);
+      });
   }, []);
+
+  if(loading) {
+    return ( 
+      <div className="min-h-screen flex justify-center items-center">
+        <Loading></Loading>
+      </div>
+    );
+  }
 
   return (
     <div className="py-10 bg-[#F5F0E1] hover:bg-[#F5F0E120] transition-colors duration-1000">
-      <h1 className="text-5xl font-bold text-center text-[#2F4F2F] pb-10">
+      <h1 className="text-5xl font-semibold text-center text-[#2F4F2F] pb-10">
         Meet Our Green Experts
       </h1>
       <div className="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

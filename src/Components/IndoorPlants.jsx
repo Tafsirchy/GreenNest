@@ -73,7 +73,7 @@ const IndoorPlants = () => {
               <div className="mt-4">
                 <Link
                   to={`/plantDetails/${plant.plantId}`}
-                  className="btn w-full bg-[#A3B18A] text-[#F5F0E1] hover:bg-[#7f9167] transition-colors"
+                 className="btn w-full bg-[#A3B18A] text-[#F5F0E1] hover:bg-[#7f9167] transition-colors"
                 >
                   View Details
                 </Link>
