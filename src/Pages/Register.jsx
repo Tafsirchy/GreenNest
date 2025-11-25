@@ -1,22 +1,24 @@
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
+import { toast } from "react-toastify";
+import { Eye, EyeOff } from "lucide-react";
 
 const Register = () => {
   const { createUser, setUser, handleGoogleSignIn, updateUser } =
     useContext(AuthContext);
+
   const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false); // ⭐ FIX ADDED
   const navigate = useNavigate();
 
   const handleRegister = (e) => {
     e.preventDefault();
-    // console.log(e.target)
     const form = e.target;
     const name = form.name.value;
     const photo = form.photo.value;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(name, photo, email, password);
 
     const uppercase = /[A-Z]/;
     const lowercase = /[a-z]/;
@@ -37,7 +39,7 @@ const Register = () => {
     createUser(email, password)
       .then((result) => {
         const user = result.user;
-        // console.log(user);
+
         updateUser({ displayName: name, photoURL: photo })
           .then(() => {
             setUser({ ...user, displayName: name, photoURL: photo });
@@ -46,12 +48,14 @@ const Register = () => {
             console.log(error);
             setUser(user);
           });
+
         setUser(user);
+        toast.success("Sign Up Successful");
         form.reset();
         navigate("/");
       })
-      .catch((error) => {
-        alert(error);
+      .catch(() => {
+        toast.error("Email already exists");
       });
   };
 
@@ -62,74 +66,89 @@ const Register = () => {
         setUser(user);
         navigate("/");
       })
-      .then((error) => console.log(error));
+      .catch((error) => console.log(error)); // ⭐ FIXED
   };
 
   return (
     <div>
-      <div className="hero bg-base-200 min-h-screen bg-gradient-to-br from-[#f3faef] to-[#d3e6dd]">
-        {/* <div className="hero-content flex-col lg:flex-row-reverse">
-        </div> */}
-
-        <div className="card max-w-sm shrink-0 border  w-full backdrop-blur-lg bg-white/10  border-white/20 shadow-2xl rounded-2xl">
-          <div className="card-body ">
+      <div className="hero bg-base-200 min-h-screen bg-gradient-to-br from-[#f3faef] to-[#d3e6dd] p-10">
+        <div className="card max-w-sm shrink-0 border w-full backdrop-blur-lg bg-white/10 border-white/20 shadow-2xl rounded-2xl">
+          <div className="card-body">
             <div>
-              <h1 className="text-2xl font-bold text-center py-2 border-b-1 border-base-300">
-                Register Your Account
+              <h1 className="text-2xl font-bold text-center border-b-1 border-base-300">
+                Sign Up
               </h1>
             </div>
+
             <form onSubmit={handleRegister}>
-              <fieldset className="fieldset mt-1">
-                <label className="label text-black font-semibold">Name</label>
+              <fieldset className="fieldset">
+                <label className="label text-black font-semibold text-sm">
+                  Name
+                </label>
                 <input
                   name="name"
                   type="text"
-                  className="input"
+                  className="input w-full"
                   placeholder="Name"
                   required
                 />
-                {/* email */}
-                <label className="label text-black font-semibold">Email</label>
+
+                <label className="label text-black font-semibold mt-1 text-sm">
+                  Email
+                </label>
                 <input
                   name="email"
                   type="email"
-                  className="input"
+                  className="input w-full"
                   placeholder="Email"
                   required
                 />
-                {/* photo url */}
-                <label className="label text-black font-semibold">
+
+                <label className="label text-black font-semibold mt-1 text-sm">
                   Photo URL
                 </label>
                 <input
                   name="photo"
                   type="text"
-                  className="input"
+                  className="input w-full"
                   placeholder="Photo URL"
                   required
                 />
-                {/* password */}
-                <label className="label text-black font-semibold">
-                  Password
-                </label>
-                <input
-                  name="password"
-                  type="password"
-                  className="input"
-                  placeholder="Password"
-                  required
-                />
-                {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
+
+                <div className="flex flex-col pt-2 relative pt-0">
+                  <label className="label text-black font-semibold mb-1 text-sm">
+                    Password
+                  </label>
+                  <input
+                    name="password"
+                    type={showPassword ? "text" : "password"}
+                    className="input input-bordered w-full"
+                    placeholder="Password"
+                    onChange={() => setError("")}
+                    required
+                  />
+
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-10 text-sm text-gray-600"
+                  >
+                    {showPassword ? <Eye /> : <EyeOff />}
+                  </button>
+                </div>
+
+                {error && <p className="text-red-500 text-sm">{error}</p>}
+
                 <button
-                  to="/"
                   type="submit"
                   className="btn mt-4 bg-[#043915] hover:bg-[#046b21] text-white"
                 >
-                  Register
+                  Sign Up
                 </button>
+
                 <button
                   onClick={googleSignUp}
-                  className="my-3 btn bg-white text-black border-[#e5e5e5]"
+                  className="my-1 btn bg-white text-black border-[#e5e5e5]"
                 >
                   <svg
                     aria-label="Google logo"
@@ -160,7 +179,8 @@ const Register = () => {
                   </svg>
                   Continue with Google
                 </button>
-                <div className="text-center text-sm  pt-2">
+
+                <div className="text-center text-sm pt-2">
                   <p className="text-black">
                     Already Have an Account?{" "}
                     <Link

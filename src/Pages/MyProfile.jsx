@@ -3,10 +3,14 @@ import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import { AuthContext } from "../Provider/AuthProvider";
 import { Edit3, Mail, UserRound } from "lucide-react";
+import Loading from "../Components/Loading";
 
 const MyProfile = () => {
   const { user, setUser, updateUser } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
+
+  const [loading, setLoading] = useState(false);
+
 
   const handleOpenForm = () => {
     setIsOpen(!isOpen);
@@ -14,6 +18,7 @@ const MyProfile = () => {
 
   const handleUpdateForm = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const name = e.target.name.value;
     const photo = e.target.photo.value;
     
@@ -22,8 +27,8 @@ const MyProfile = () => {
       photoURL: photo,
     }).then(() => {
       setUser({ ...user, displayName: name, photoURL: photo });
-
       setIsOpen(false);
+      setLoading(false);
     });
   };
 
@@ -70,50 +75,60 @@ const MyProfile = () => {
 
             {/* Update Form */}
             {isOpen && (
-              <form
-                onSubmit={handleUpdateForm}
-                className="mt-6 mx-6 p-6 bg-white border border-gray-200 rounded-xl shadow-inner space-y-4 "
-              >
-                <h2 className="text-xl font-semibold text-[#043915] text-center">
-                  Edit Information
-                </h2>
+              <>
+                {loading ? (
+                  <div className="mt-5">
+                    <Loading></Loading>
+                  </div>
+                ) : (
+                  <form
+                    onSubmit={handleUpdateForm}
+                    className="mt-6 mx-6 p-6 bg-white border border-gray-200 rounded-xl shadow-inner space-y-4 "
+                  >
+                    <h2 className="text-xl font-semibold text-[#043915] text-center">
+                      Edit Information
+                    </h2>
 
-                {/* Name */}
-                <div className="flex flex-col">
-                  <label className="font-semibold text-gray-700">Name</label>
-                  <input
-                    defaultValue={user?.displayName}
-                    name="name"
-                    type="text"
-                    className="input input-bordered w-full rounded-lg"
-                    placeholder="Your Name"
-                    required
-                  />
-                </div>
+                    {/* Name */}
+                    <div className="flex flex-col">
+                      <label className="font-semibold text-gray-700">
+                        Name
+                      </label>
+                      <input
+                        defaultValue={user?.displayName}
+                        name="name"
+                        type="text"
+                        className="input input-bordered w-full rounded-lg"
+                        placeholder="Your Name"
+                        required
+                      />
+                    </div>
 
-                {/* Photo URL */}
-                <div className="flex flex-col">
-                  <label className="font-semibold text-gray-700">
-                    Photo URL
-                  </label>
-                  <input
-                    defaultValue={user?.photoURL}
-                    name="photo"
-                    type="text"
-                    className="input input-bordered w-full rounded-lg"
-                    placeholder="Photo URL"
-                    required
-                  />
-                </div>
+                    {/* Photo URL */}
+                    <div className="flex flex-col">
+                      <label className="font-semibold text-gray-700">
+                        Photo URL
+                      </label>
+                      <input
+                        defaultValue={user?.photoURL}
+                        name="photo"
+                        type="text"
+                        className="input input-bordered w-full rounded-lg"
+                        placeholder="Photo URL"
+                        required
+                      />
+                    </div>
 
-                {/* Submit Button */}
-                <button
-                  type="submit"
-                  className="btn bg-[#043915] hover:bg-[#046b21] text-white font-semibold w-full rounded-lg"
-                >
-                  Save Changes
-                </button>
-              </form>
+                    {/* Submit Button */}
+                    <button
+                      type="submit"
+                      className="btn bg-[#043915] hover:bg-[#046b21] text-white font-semibold w-full rounded-lg"
+                    >
+                      Save Changes
+                    </button>
+                  </form>
+                )}
+              </>
             )}
           </div>
         </div>

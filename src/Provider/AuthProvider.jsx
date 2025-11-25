@@ -10,11 +10,12 @@ import {
   updateProfile,
 } from "firebase/auth";
 import app from "../firebase/firebase.config";
+import Loading from "../Components/Loading";
 
 export const AuthContext = createContext();
 
 const auth = getAuth(app);
-const googleProvider = new GoogleAuthProvider;
+const googleProvider = new GoogleAuthProvider();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -22,20 +23,20 @@ const AuthProvider = ({ children }) => {
 
   const updateUser = (updateData) => {
     return updateProfile(auth.currentUser, updateData);
-  }
+  };
 
   const createUser = (email, password) => {
-    setLoading(true);
+    // setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
   const signIn = (email, password) => {
-    setLoading(true);
+    // setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
   const handleGoogleSignIn = () => {
-    setLoading(true);
+    // setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
 
@@ -65,6 +66,13 @@ const AuthProvider = ({ children }) => {
     updateUser,
   };
 
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <Loading></Loading>
+      </div>
+    );
+  }
   return (
     <AuthContext.Provider value={authData}>{children}</AuthContext.Provider>
   );

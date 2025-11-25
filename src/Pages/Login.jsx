@@ -1,33 +1,43 @@
 import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
+import { Eye, EyeOff } from "lucide-react";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const { signIn, handleGoogleSignIn, setUser } = useContext(AuthContext);
   const [error, setError] = useState("");
   const [email, setEmail] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const location = useLocation();
   const navigate = useNavigate();
-  // console.log(location);
+
   const handleLogin = (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
 
-
-      signIn(email, password)
-        .then((result) => {
-          const user = result.user;
-          console.log(user);
-          form.reset();
-          navigate(`${location.state ? location.state : "/"}`);
-        })
-        .catch((error) => {
-          // alert(error.message);
-          setError(error.code);
-        });
+    signIn(email, password)
+      .then((result) => {
+        const user = result.user;
+        toast.success("Login successfully");
+        form.reset();
+        setError("");
+        navigate(location.state ? location.state : "/");
+      })
+      .catch((error) => {
+        if (error.code === "auth/wrong-password") {
+          setError("Incorrect password. Please try again.");
+        } else if (error.code === "auth/user-not-found") {
+          setError("No account found with this email.");
+        } else if (error.code === "auth/invalid-email") {
+          setError  ("Invalid email format.");
+        } else {
+          setError("Something went wrong. Please try again.");
+        }
+      });
   };
 
   const googleSignIn = () => {
@@ -35,32 +45,31 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         setUser(user);
-        navigate(`${location.state ? location.state : "/"}`);
+        navigate(location.state ? location.state : "/");
       })
-      .then((error) => console.log(error));
+      .catch((error) => console.log(error));
   };
 
   const handleForgetPass = () => {
-    
     navigate(`/forgetPass/${email}`);
   };
 
   return (
     <div className="hero bg-base-200 min-h-screen bg-gradient-to-br from-[#FAF5EF] to-[#E6E2D3] flex items-center justify-center">
-      <div className="card max-w-sm shrink-0 border  w-full backdrop-blur-lg bg-white/10  border-white/20 shadow-2xl rounded-2xl">
+      <div className="card max-w-sm shrink-0 border w-full backdrop-blur-lg bg-white/10 border-white/20 shadow-2xl rounded-2xl">
         <div className="card-body">
-          <div>
-            <h1 className="text-2xl font-bold text-center py-4 text-black border-b border-white/30">
-              Login Your Account
-            </h1>
-          </div>
+          <h1 className="text-2xl font-bold text-center py-4 text-black border-b border-white/30">
+            Login Your Account
+          </h1>
 
           <form onSubmit={handleLogin} className="flex flex-col mt-3">
-            {/* Email */}
             <div className="flex flex-col py-2">
               <label className="label text-black font-semibold">Email</label>
               <input
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  setError("");
+                }}
                 name="email"
                 type="email"
                 className="input input-bordered w-full"
@@ -70,38 +79,47 @@ const Login = () => {
             </div>
 
             {/* Password */}
-            <div className="flex flex-col py-2">
+            <div className="flex flex-col py-2 relative">
               <label className="label text-black font-semibold">Password</label>
               <input
                 name="password"
-                type="password"
+                type={showPassword ? "text" : "password"}
                 className="input input-bordered w-full"
                 placeholder="Password"
+                onChange={() => setError("")}
                 required
               />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-10 text-sm text-gray-600"
+              >
+                {showPassword ? <Eye /> : <EyeOff />}
+              </button>
             </div>
 
-            {/* Forgot Password */}
             <div className="text-left">
               <button
+                type="button"
                 onClick={handleForgetPass}
-                className="link link-hover text-red-500 text-sm mt-0 pt-0"
+                className="link link-hover text-red-500 text-sm"
               >
                 Forgot password?
               </button>
             </div>
-            {error && <p className="text-red-500 text-sm mt-2 pt-2">{error}</p>}
-            {/* Login Button */}
+
+            {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
+
             <button
               type="submit"
               className="btn btn-neutral mt-4 bg-[#043915] hover:bg-[#046b21] text-white font-semibold"
             >
               Login
             </button>
-            {/* login with google */}
+
             <button
               onClick={googleSignIn}
-              className="my-3 btn bg-white text-black border-[#e5e5e5]"
+              className="mt-3 btn bg-white text-black border-[#e5e5e5]"
             >
               <svg
                 aria-label="Google logo"
@@ -130,19 +148,18 @@ const Login = () => {
                   ></path>
                 </g>
               </svg>
-              Login with Google
+              Continue with Google
             </button>
           </form>
 
-          {/* Register Link */}
-          <div className="text-center pt-4 text-black">
+          <div className="text-center pt-3 text-black">
             <p>
               Don't Have an Account?{" "}
               <Link
                 to="/auth/register"
                 className="text-[#043915] hover:underline font-bold"
               >
-                Register
+                Sign Up
               </Link>
             </p>
           </div>

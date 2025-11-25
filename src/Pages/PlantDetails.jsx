@@ -7,6 +7,7 @@ import { FaLeaf } from "react-icons/fa";
 import price from "../assets/dollar.png";
 import available from "../assets/tree.png";
 import ratings from "../assets/star.png";
+import Loading from "../Components/Loading";
 
 const PlantDetails = () => {
   const { id } = useParams();
@@ -77,9 +78,7 @@ const PlantDetails = () => {
               </div>
             </div>
           ) : (
-            <div className="flex justify-center items-center">
-              <span className="loading loading-ring loading-md"></span>
-            </div>
+            <Loading></Loading>
           )}
         </div>
       </main>

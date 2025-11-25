@@ -3,13 +3,14 @@ import logo from "../assets/nest-home.png";
 import { Link, NavLink } from "react-router";
 import { UserIcon } from "lucide-react";
 import { AuthContext } from "../Provider/AuthProvider";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
 
   const handleLogOut = () => {
     logOut()
-      .then(() => alert("User Logged Out"))
+      .then(() => toast.success("Logout Successfully"))
       .catch((error) => console.error(error));
   };
 
@@ -117,7 +118,7 @@ const Navbar = () => {
                 className="dropdown-content menu p-2 shadow bg-white rounded-box w-52 text-[#043915] text-center items-center"
               >
                 <li className="font-semibold pointer-events-none bg-gray-100 rounded-lg ">
-                  <span>{user.displayName}</span>
+                  <span className="font-bold text-lg">{user.displayName}</span>
                 </li>
 
                 <li>

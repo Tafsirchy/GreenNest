@@ -2,16 +2,33 @@ import React, { useEffect, useState } from "react";
 import ratings from "../assets/iconRatings.png";
 import dollar from "../assets/dollar-symbol.png";
 import { Link } from "react-router";
+import Loading from "./Loading";
 
 const IndoorPlants = () => {
   const [indoorPlants, setIndoorPlants] = useState([]);
+  const [loading, setLoading] = useState(true);
+
 
   useEffect(() => {
     fetch("plants.json")
       .then((res) => res.json())
-      .then((data) => setIndoorPlants(data))
-      .catch((error) => console.log(error));
+      .then((data) => {
+        setIndoorPlants(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        setLoading(false);
+      });
   }, []);
+
+  if(loading) {
+    return (
+      <div className="min-h-screen flex justify-center items-center">
+        <Loading></Loading>
+      </div>
+    );
+  }
 
   return (
     <div className="py-10 bg-[#F5F0E1] min-h-screen">
