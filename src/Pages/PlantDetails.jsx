@@ -27,7 +27,7 @@ const PlantDetails = () => {
         <Navbar />
       </header>
       <main className="bg-[#F5F0E130] ">
-        <div className="w-11/12 mx-auto  py-10">
+        <div className="w-11/12 mx-auto pt-5 pb-10">
           {plant ? (
             <div className="py-10">
               <div className="text-center mb-10">

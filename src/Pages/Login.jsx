@@ -99,25 +99,30 @@ const Login = () => {
               />
             </div>
 
-            <div className="flex flex-col py-2 relative">
+            <div className="flex flex-col py-2">
               <label className="label text-black font-semibold text-lg mb-1">
                 Password
               </label>
-              <input
-                name="password"
-                type={showPassword ? "text" : "password"}
-                className="input input-bordered w-full"
-                placeholder="Password"
-                onChange={() => setError("")}
-                required
-              />
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-10 text-sm text-gray-600"
-              >
-                {showPassword ? <Eye /> : <EyeOff />}
-              </button>
+
+              {/* Wrapper for input + icon */}
+              <div className="relative w-full">
+                <input
+                  name="password"
+                  type={showPassword ? "text" : "password"}
+                  className="input input-bordered w-full pr-12"
+                  placeholder="Password"
+                  onChange={() => setError("")}
+                  required
+                />
+
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-600"
+                >
+                  {showPassword ? <Eye /> : <EyeOff />}
+                </button>
+              </div>
             </div>
 
             <div className="text-left">
