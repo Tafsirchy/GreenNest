@@ -17,18 +17,23 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    setLoading(true);
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
 
+    setError("");
+
     signIn(email, password)
       .then((result) => {
-        const user = result.user;
+        setLoading(true);
+
         toast.success("Login successfully");
         form.reset();
-        setError("");
-        navigate(location.state ? location.state : "/");
+
+        setTimeout(() => {
+          navigate(location.state ? location.state : "/");
+          setLoading(false);
+        }, 500);
       })
       .catch((error) => {
         if (error.code === "auth/wrong-password") {
@@ -40,8 +45,7 @@ const Login = () => {
         } else {
           setError("Something went wrong. Please try again.");
         }
-      })
-      .finally(() => setLoading(false));
+      });
   };
 
   const googleSignIn = () => {
