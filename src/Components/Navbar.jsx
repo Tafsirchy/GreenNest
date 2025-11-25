@@ -91,7 +91,7 @@ const Navbar = () => {
         </div>
         <div className="navbar-end gap-2">
           {user ? (
-            <div className="dropdown dropdown-end">
+            <div className="dropdown dropdown-end dropdown-hover">
               <div
                 tabIndex={0}
                 role="button"
