@@ -8,9 +8,8 @@ const Footer = () => {
         <aside>
           <img className="w-20 h-20" src={logo} alt="" />
           <p>
-            ACME Industries Ltd.
-            <br />
-            Providing reliable tech since 1992
+            GreenNest
+            <br />A Home for Your Plants
           </p>
         </aside>
         <nav className="gap-3">
